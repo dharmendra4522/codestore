@@ -1,0 +1,25 @@
+html {
+  background: var(--page-bg);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif; 
+  background: var(--page-bg);
+  color: var(--title-color);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}

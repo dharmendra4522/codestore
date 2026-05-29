@@ -1,0 +1,95 @@
+.registration-form-container {
+  background: linear-gradient(90deg, #052330 0%, #083b52 45%, #0b5a73 100%);
+  border-radius: 20px;
+  padding: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.registration-form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.input-row{
+    display: flex;
+    gap: 16px;
+}
+
+.input-half {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-half .input-group {
+  margin-bottom: 0;
+}
+
+.submit-button{
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-radius: 12px;
+    background-color: #3f2ada;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.submit-button:hover{
+    background-color: #2a1cda;
+    cursor: pointer;
+
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #09142a;
+  border: 1px solid #273142;
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: white;
+  cursor: pointer;
+}
+
+.skill-chip input {
+  accent-color: #4f8cff;
+}
+
+.select-field {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #273142;
+  border-radius: 12px;
+  background-color: #09142a;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+}
+
+.select-field:focus {
+  border-color: #4f8cff;
+  box-shadow: 0 0 0 2px rgba(79, 140, 255, 0.15);
+}
+
+.select-field option {
+  background-color: #09142a;
+  color: #ffffff;
+}
+
