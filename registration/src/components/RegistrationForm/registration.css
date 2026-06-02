@@ -6,21 +6,20 @@
   margin-right: 10px;
 }
 
-
-.registration-form{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: flex-start;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.input-row{
-    display: flex;
-    gap: 16px;
+.input-row {
+  display: flex;
+  gap: 16px;
 }
 
 .input-half {
@@ -32,21 +31,20 @@
   margin-bottom: 0;
 }
 
-.submit-button{
-    width: 100%;
-    padding: 14px 0;
-    border: none;
-    border-radius: 12px;
-    background-color: #3f2ada;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
+.submit-button {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-radius: 12px;
+  background-color: #3f2ada;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.submit-button:hover{
-    background-color: #2a1cda;
-    cursor: pointer;
-
+.submit-button:hover {
+  background-color: #2a1cda;
+  cursor: pointer;
 }
 
 .skills-grid {
@@ -93,3 +91,76 @@
   color: #ffffff;
 }
 
+/* Skill pill layout: stack checkbox above the label text */
+
+.skill-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* More specific selectors to avoid being overridden by global styles */
+.employee-form .skill-wrap .skill-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: #09142a;
+  border: 1px solid #273142;
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.employee-form .skill-wrap .skill-pill input {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #4f8cff;
+}
+
+.employee-form .skill-wrap .skill-pill span {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Override the global `.employee-form label { display: grid }` so
+   the checkbox and its text sit on one line. */
+.employee-form label.skill-pill {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 10px 14px;
+  border-radius: 999px;
+}
+
+.employee-form label.skill-pill input {
+  order: 0;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.employee-form label.skill-pill span {
+  order: 1;
+  display: inline-block;
+}
+
+/* Inner container to force inline layout regardless of label styles */
+.skill-content {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.skill-content input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}

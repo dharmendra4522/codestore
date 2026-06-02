@@ -2,6 +2,7 @@ export interface Employee {
   id: number;
   name: string;
   email: string;
+  password: string;
   phone: string;
   department: string;
   experience: number;
@@ -11,6 +12,7 @@ export interface Employee {
 export interface EmployeeFormValues {
   name: string;
   email: string;
+  password: string;
   phone: string;
   department: string;
   experience: string;
@@ -20,10 +22,13 @@ export interface EmployeeFormValues {
 export interface EmployeeInput {
   name: string;
   email: string;
+  password: string;
   phone: string;
   department: string;
   experience: number;
   skills: string[];
 }
 
-export type EmployeeFormErrors = Partial<Record<keyof EmployeeFormValues, string>>;
+export type EmployeeFormErrors = Partial<
+  Record<keyof EmployeeFormValues, string>
+>;

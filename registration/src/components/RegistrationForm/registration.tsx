@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import {
-  createEmployee,
-  updateEmployee,
-} from "../../services/employeeService";
+import "./registration.css";
+import { useState, useEffect } from "react";
+import { createEmployee, updateEmployee } from "../../services/employeeService";
 import type {
   Employee,
   EmployeeFormErrors,
@@ -12,19 +10,27 @@ import type {
 const blankForm: EmployeeFormValues = {
   name: "",
   email: "",
+  password: "",
   phone: "",
   department: "",
   experience: "",
   skills: [],
 };
 
-const departmentOptions = ["IT", "Engineering", "HR", "Sales", "Marketing", "Finance"];
+const departmentOptions = [
+  "IT",
+  "Engineering",
+  "HR",
+  "Sales",
+  "Marketing",
+  "Finance",
+];
 const skillOptions = ["React", "TypeScript", "Node.js", "CSS", "JavaScript"];
 
 interface RegistrationFormProps {
-  fetchEmployees: () => Promise<void>;
-  editingEmployee: Employee | null;
-  onCancelEdit: () => void;
+  fetchEmployees?: () => Promise<void>;
+  editingEmployee?: Employee | null;
+  onCancelEdit?: () => void;
 }
 
 function validateForm(form: EmployeeFormValues): EmployeeFormErrors {
@@ -77,29 +83,47 @@ export default function RegistrationForm({
   editingEmployee,
   onCancelEdit,
 }: RegistrationFormProps) {
-  const [form, setForm] = useState<EmployeeFormValues>(blankForm);
+  const [form, setForm] = useState<EmployeeFormValues>(() =>
+    editingEmployee
+      ? {
+          name: editingEmployee.name,
+          email: editingEmployee.email,
+          password: editingEmployee.password,
+          phone: editingEmployee.phone,
+          department: editingEmployee.department,
+          experience: String(editingEmployee.experience),
+          skills: [...editingEmployee.skills],
+        }
+      : blankForm,
+  );
   const [errors, setErrors] = useState<EmployeeFormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>(() =>
+    editingEmployee ? `Editing employee #${editingEmployee.id}` : "",
+  );
 
   useEffect(() => {
-    if (editingEmployee) {
-      setForm({
-        name: editingEmployee.name,
-        email: editingEmployee.email,
-        phone: editingEmployee.phone,
-        department: editingEmployee.department,
-        experience: String(editingEmployee.experience),
-        skills: [...editingEmployee.skills],
-      });
-      setErrors({});
-      setMessage(`Editing employee #${editingEmployee.id}`);
-      return;
-    }
+    (async () => {
+      await Promise.resolve();
 
-    setForm(blankForm);
-    setErrors({});
-    setMessage("");
+      setErrors({});
+
+      if (editingEmployee) {
+        setForm({
+          name: editingEmployee.name,
+          email: editingEmployee.email,
+          password: editingEmployee.password ?? "",
+          phone: editingEmployee.phone,
+          department: editingEmployee.department,
+          experience: String(editingEmployee.experience),
+          skills: [...editingEmployee.skills],
+        });
+        setMessage(`Editing employee #${editingEmployee.id}`);
+      } else {
+        setForm(blankForm);
+        setMessage("");
+      }
+    })();
   }, [editingEmployee]);
 
   const handleChange = (
@@ -150,7 +174,7 @@ export default function RegistrationForm({
     setForm(blankForm);
     setErrors({});
     setMessage("");
-    onCancelEdit();
+    onCancelEdit?.();
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -170,6 +194,7 @@ export default function RegistrationForm({
     const payload = {
       name: form.name.trim(),
       email: form.email.trim(),
+      password: form.password.trim(),
       phone: form.phone.trim(),
       department: form.department,
       experience: Number(form.experience),
@@ -183,7 +208,9 @@ export default function RegistrationForm({
         await createEmployee(payload);
       }
 
-      await fetchEmployees();
+      if (fetchEmployees) {
+        await fetchEmployees();
+      }
       setForm(blankForm);
       setErrors({});
       setMessage(
@@ -191,9 +218,10 @@ export default function RegistrationForm({
           ? "Employee updated successfully."
           : "Employee saved successfully.",
       );
-      onCancelEdit();
+      onCancelEdit?.();
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Something went wrong.";
+      const errorMessage =
+        error instanceof Error ? error.message : "Something went wrong.";
       setMessage(errorMessage);
     } finally {
       setLoading(false);
@@ -207,7 +235,11 @@ export default function RegistrationForm({
         <p>Fill the details and submit the employee record.</p>
       </div>
 
-      <form className="employee-form" onSubmit={handleSubmit}>
+      <form
+        key={editingEmployee ? editingEmployee.id : "new"}
+        className="employee-form"
+        onSubmit={handleSubmit}
+      >
         <label>
           <span>Name</span>
           <input
@@ -230,6 +262,19 @@ export default function RegistrationForm({
             className={errors.email ? "input error" : "input"}
           />
           {errors.email ? <em>{errors.email}</em> : null}
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Enter password"
+            type="password"
+            className={errors.password ? "input error" : "input"}
+          />
+          {errors.password ? <em>{errors.password}</em> : null}
         </label>
 
         <label>
@@ -286,12 +331,14 @@ export default function RegistrationForm({
           <div className="skill-wrap">
             {skillOptions.map((skill) => (
               <label key={skill} className="skill-pill">
-                <input
-                  type="checkbox"
-                  checked={form.skills.includes(skill)}
-                  onChange={() => toggleSkill(skill)}
-                />
-                <span>{skill}</span>
+                <div className="skill-content">
+                  <input
+                    type="checkbox"
+                    checked={form.skills.includes(skill)}
+                    onChange={() => toggleSkill(skill)}
+                  />
+                  <span>{skill}</span>
+                </div>
               </label>
             ))}
           </div>
@@ -299,14 +346,22 @@ export default function RegistrationForm({
         </fieldset>
 
         {message ? (
-          <div className={message.includes("successfully") ? "notice success" : "notice"}>
+          <div
+            className={
+              message.includes("successfully") ? "notice success" : "notice"
+            }
+          >
             {message}
           </div>
         ) : null}
 
         <div className="form-actions">
           {editingEmployee ? (
-            <button type="button" className="secondary-button" onClick={resetForm}>
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={resetForm}
+            >
               Cancel
             </button>
           ) : null}

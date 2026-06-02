@@ -1,0 +1,1 @@
+{"version":3,"file":"EmployeeManager.d.ts","sourceRoot":"","sources":["../../services/EmployeeManager.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,oBAAoB,CAAC;AAE9C,cAAM,kBAAkB;IACtB,OAAO,CAAC,SAAS,CAAkB;IAEnC,WAAW,CAAC,QAAQ,EAAE,QAAQ,GAAG,IAAI;IAKrC,WAAW,IAAI,QAAQ,EAAE;CAG1B;AAED,OAAO,EAAE,kBAAkB,EAAE,CAAC"}
