@@ -1,3 +1,4 @@
+import "./savedUser.css";
 import type { Employee } from "../../types/employee";
 
 interface SavedUserProps {

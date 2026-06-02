@@ -31,6 +31,8 @@
 // mithai1.eat();
 // Constructor- It is a special method that is called when an object is instantiated. It is used to initialize the properties of the class.
 class PenDrive {
+    company;
+    price;
     constructor(company, price) {
         this.company = company;
         this.price = price;
@@ -42,6 +44,9 @@ console.log(p1);
 console.log(p2);
 // Access Modifiers- They are keywords that determine the accessibility of class members. TypeScript provides three access modifiers: public, private, and protected. By default, all class members are public.
 class Person {
+    name;
+    age;
+    email;
     constructor(name, age, email) {
         this.name = name;
         this.age = age;
@@ -57,10 +62,8 @@ let person1 = new Person("John", 30, "a@gmail.com");
 // Private - It means that the class member can only be accessed within the class. If you try to access a private member from outside the class, you will get an error.
 // Protected - It means that the class member can be accessed within the class and its subclasses. If you try to access a protected member from outside the class or its subclasses, you will get an error.
 class User {
-    constructor() {
-        this.balance = 50000;
-        this.username = "user123";
-    }
+    balance = 50000;
+    username = "user123";
     getBalance() {
         console.log(this.balance);
     }
@@ -84,6 +87,7 @@ let admin1 = new Admin();
 admin1.getUsername("admin123");
 // Readonly Properties- They are properties that can only be assigned a value once. Once a value is assigned to a readonly property, it cannot be changed. This is useful for properties that should not be modified after they are initialized.
 class Abcd {
+    name;
     constructor(name) {
         this.name = name;
     }
@@ -96,6 +100,7 @@ obj1.getName();
 // obj1.name = "Doe"; // Error: Cannot assign to 'name' because it is a read-only property.
 // Getters and Setters- They are special methods that allow you to get and set the values of class properties. Getters are used to retrieve the value of a property, while setters are used to modify the value of a property.
 class Emp {
+    username;
     constructor(username) {
         this.username = username;
         this.username = username;

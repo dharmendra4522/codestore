@@ -1,3 +1,4 @@
+import "./overview.css";
 import type { Employee } from "../../types/employee";
 
 interface OverviewPanelProps {
@@ -14,26 +15,26 @@ export default function OverviewPanel({ employees }: OverviewPanelProps) {
   ).size;
 
   return (
-    <section className="hero-card">
-      <div className="hero-copy">
-        <p className="eyebrow">Employee Dashboard</p>
+    <section className="overview-panel">
+      <div className="overview-copy">
+        <p className="overview-kicker">Employee Dashboard</p>
         <h2>Track registrations, edits, and saved users in one place.</h2>
-        <p className="hero-text">
+        <p className="overview-text">
           A cleaner snapshot of your current employee data helps you quickly
           see what is already saved and where your team is growing.
         </p>
       </div>
 
-      <div className="stats-grid">
-        <article className="stat-card">
+      <div className="overview-stats">
+        <article className="overview-stat-card">
           <span>Total Employees</span>
           <strong>{employees.length}</strong>
         </article>
-        <article className="stat-card">
+        <article className="overview-stat-card">
           <span>Departments</span>
           <strong>{departmentCount}</strong>
         </article>
-        <article className="stat-card">
+        <article className="overview-stat-card">
           <span>Unique Skills</span>
           <strong>{uniqueSkills}</strong>
         </article>

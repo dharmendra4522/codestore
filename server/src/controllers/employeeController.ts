@@ -4,7 +4,7 @@ import {
   deleteEmployeeRecord,
   listEmployees,
   updateEmployeeRecord,
-} from "../models/employee";
+} from "../models/employeeModel";
 
 function parseId(rawValue: string | string[]) {
   const value = Array.isArray(rawValue) ? rawValue[0] : rawValue;
@@ -17,6 +17,7 @@ function normalizeInput(body: Request["body"]) {
   return {
     name: String(body.name ?? ""),
     email: String(body.email ?? ""),
+    password: String(body.password ?? ""),
     phone: String(body.phone ?? ""),
     department: String(body.department ?? ""),
     experience: Number(body.experience ?? 0),
@@ -34,7 +35,9 @@ export function createEmployee(request: Request, response: Response) {
   const payload = normalizeInput(request.body);
 
   if (!payload.name.trim() || !payload.email.trim()) {
-    return response.status(400).json({ message: "Name and email are required." });
+    return response
+      .status(400)
+      .json({ message: "Name and email are required." });
   }
 
   const employee = createEmployeeRecord(payload);
