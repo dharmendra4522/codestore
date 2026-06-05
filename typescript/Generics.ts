@@ -15,7 +15,7 @@ let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = (x, y) => x + y;
 // Generic interfaces - We can define generic interfaces to describe the shape of objects that can work with different types of data. This allows us to create more flexible and reusable code while still maintaining type safety.
-
+     
 interface Box<T>{
     name: string;
     age: number;

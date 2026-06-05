@@ -1,0 +1,1 @@
+{"version":3,"file":"truck.d.ts","sourceRoot":"","sources":["../../src/entities/truck.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,sBAAsB,CAAC;AAC/C,qBAAa,KAAM,SAAQ,OAAO;IAC+B,YAAY,EAAE,MAAM;gBAArE,EAAE,EAAC,MAAM,EAAE,KAAK,EAAC,MAAM,EAAE,QAAQ,EAAC,MAAM,EAAS,YAAY,EAAE,MAAM;IAG1E,cAAc,IAAI,MAAM;IAIxB,cAAc,CAAC,KAAK,EAAE,MAAM,GAAG,MAAM;CAK/C"}

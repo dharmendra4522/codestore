@@ -1,0 +1,1 @@
+{"version":3,"file":"car.d.ts","sourceRoot":"","sources":["../../src/entities/car.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,sBAAsB,CAAC;AAE/C,qBAAa,GAAI,SAAQ,OAAO;IACoC,iBAAiB,EAAE,MAAM;gBAA7E,EAAE,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM,EAAE,QAAQ,EAAE,MAAM,EAAS,iBAAiB,EAAE,MAAM;IAGlF,cAAc,IAAI,MAAM;IAGxB,cAAc,CAAC,KAAK,EAAE,MAAM,GAAG,MAAM;CAK/C"}

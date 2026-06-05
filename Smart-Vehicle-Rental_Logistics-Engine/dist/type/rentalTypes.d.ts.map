@@ -1,0 +1,1 @@
+{"version":3,"file":"rentalTypes.d.ts","sourceRoot":"","sources":["../../src/type/rentalTypes.ts"],"names":[],"mappings":"AAEA,MAAM,MAAM,aAAa,GAAG,WAAW,GAAG,QAAQ,GAAG,aAAa,CAAC;AACnE,MAAM,MAAM,QAAQ,GAAG,UAAU,GAAG,OAAO,CAAC;AAE5C,MAAM,WAAW,OAAO;IACpB,cAAc,CAAC,KAAK,EAAE,MAAM,GAAG,MAAM,CAAC;IACtC,IAAI,IAAI,IAAI,CAAC;IACb,aAAa,IAAI,IAAI,CAAC;CACzB"}
