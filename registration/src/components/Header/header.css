@@ -44,6 +44,7 @@
 }
 
 .brand-copy p {
+  font-weight: 900;
   color: #cbd5e1;
   font-size: 0.98rem;
 }

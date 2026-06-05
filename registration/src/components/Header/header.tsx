@@ -24,9 +24,11 @@ export default function Header() {
         ER
       </div>
       <div className="brand-copy">
-        <h1>Employee Registration</h1>
-        <p>Add, edit and manage employees</p>
-        {loggedIn() ? <p>Welcome back, {localStorage.getItem("user")}</p> : null}
+        {/* <h1>Employee Registration</h1>
+        <p>Add, edit and manage employees</p> */}
+        {loggedIn() ? <p>Welcome back
+          {/* {localStorage.getItem("user")} */}
+        </p> : null}
       </div>
       {/* Login button */}
       <button className="login-btn" onClick={handleLogin}>

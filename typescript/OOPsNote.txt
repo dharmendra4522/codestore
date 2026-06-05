@@ -400,3 +400,5 @@ productionDb.connect();               // ✅ Works (Inherited directly from abst
 productionDb.saveUser("EMP_101", {}); // ✅ Works (Implemented by child class)
 
 
+==========================================================
+Prototype - It is 

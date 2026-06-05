@@ -12,6 +12,7 @@ app.use(
 
 app.use(express.json());
 
+
 app.use("/api/auth", authRoute);
 app.use("/api/employees", employeeRoutes);
 

@@ -6,6 +6,7 @@ import type { Employee } from "../types/employee";
 import OverviewPanel from "../components/OverviewPanel/overview";
 import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm/registration";
+import { getMyEmployee } from "../services/authService";
 
 export function Dashboard() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -21,14 +22,19 @@ export function Dashboard() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await getEmployees();
-      setEmployees(response.data);
-    } catch (error) {
-      console.error("Error fetching employees:", error);
-    }
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      if (user.role === "Admin") {
+        const response = await getEmployees();
+        setEmployees(response.data);
+      } else {
+        const resp = await getMyEmployee();
+        setEmployees(resp.data ? [resp.data] : []);
+      }
+    } catch (error) { console.error(error); }
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchEmployees();
   }, []);
 

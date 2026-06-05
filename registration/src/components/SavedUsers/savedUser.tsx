@@ -23,6 +23,10 @@ export default function SavedUser({
   onEdit,
   onDelete,
 }: SavedUserProps) {
+
+  const current = JSON.parse(localStorage.getItem("user") || "{}");
+  const canEdit = current.role === "Admin" || current.email === employees.find(e => e.id === editingEmployeeId)?.email;
+
   return (
     <section className="panel-card saved-panel">
       <div className="section-heading">
@@ -51,12 +55,16 @@ export default function SavedUser({
                   <strong>{employee.name}</strong>
                 </div>
                 <div className="card-actions">
-                  <button type="button" className="edit-button" onClick={() => onEdit(employee)}>
-                    Edit
-                  </button>
-                  <button type="button" className="delete-button" onClick={() => onDelete(employee.id)}>
-                    Delete
-                  </button>
+                  {canEdit && (
+                    <button type="button" className="edit-button" onClick={() => onEdit(employee)}>
+                      Edit
+                    </button>
+                  )}
+                  {canEdit && (
+                    <button type="button" className="delete-button" onClick={() => onDelete(employee.id)}>
+                      Delete
+                    </button>
+                  )}
                 </div>
               </div>
 

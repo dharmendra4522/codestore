@@ -7,32 +7,19 @@ import type { Employee } from "../types/employee";
 
 export function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  // const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
 
-  // const fetchEmployees = async () => {
-  //   try {
-  //     const response = await getEmployees();
-  //     setEmployees(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching employees:", error);
-  //   }
-  // };
+  const fetchEmployeesData = async () => {
+    try {
+      const response = await getEmployees();
+      setEmployees(response.data);
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
+  };
 
   useEffect(() => {
-    let mounted = true;
-
-    (async () => {
-      try {
-        const response = await getEmployees();
-        if (mounted) setEmployees(response.data);
-      } catch (error) {
-        console.error("Error fetching employees:", error);
-      }
-    })();
-
-    return () => {
-      mounted = false;
-    };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchEmployeesData();
   }, []);
 
   return (
@@ -41,7 +28,7 @@ export function Home() {
       <div className="App">
         <OverviewPanel employees={employees} />
         <div className="app-content">
-          <RegistrationForm />
+          <RegistrationForm fetchEmployees={fetchEmployeesData}/>
         </div>
       </div>
     </div>

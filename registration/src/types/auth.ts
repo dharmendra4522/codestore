@@ -9,4 +9,5 @@ export interface LoginResponse {
   user: {
     email: string;
   };
+  authToken?: string;
 }

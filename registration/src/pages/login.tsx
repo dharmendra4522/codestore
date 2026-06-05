@@ -23,6 +23,9 @@ export function Login() {
       }
 
       localStorage.setItem("user", JSON.stringify(response.user));
+      if(response.authToken){
+        localStorage.setItem("authToken", response.authToken);
+      }
       // mark as logged in so ProtectRoute can detect authenticated state
       localStorage.setItem("isLoggedIn", "true");
       navigate("/dashboard");

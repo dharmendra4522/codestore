@@ -4,13 +4,16 @@ import {
   getEmployees,
   removeEmployee,
   updateEmployee,
+  getMyEmployee,
 } from "../controllers/employeeController";
+import { authMiddleware } from "../middleware/authMiddleware";
 
 const employeeRoutes = Router();
 
-employeeRoutes.get("/", getEmployees);
-employeeRoutes.post("/", createEmployee);
-employeeRoutes.put("/:id", updateEmployee);
-employeeRoutes.delete("/:id", removeEmployee);
+employeeRoutes.get("/", authMiddleware, createEmployee);
+employeeRoutes.get("/", authMiddleware, getEmployees);
+employeeRoutes.get("/me", authMiddleware, getMyEmployee);
+employeeRoutes.put("/:id", authMiddleware, updateEmployee);
+employeeRoutes.delete("/:id", authMiddleware, removeEmployee);
 
-export default employeeRoutes;
+export default employeeRoutes;  
