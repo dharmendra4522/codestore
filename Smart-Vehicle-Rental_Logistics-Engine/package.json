@@ -1,0 +1,20 @@
+{
+  "name": "smart-vehicle-rental_logistics-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^6.0.3"
+  }
+}

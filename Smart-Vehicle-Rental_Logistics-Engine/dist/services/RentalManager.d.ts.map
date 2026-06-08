@@ -1,0 +1,1 @@
+{"version":3,"file":"RentalManager.d.ts","sourceRoot":"","sources":["../../src/services/RentalManager.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,sBAAsB,CAAC;AAIpD,qBAAa,aAAa,CAAC,CAAC,SAAS,OAAO;IACxC,OAAO,CAAC,SAAS,CAAW;IAErB,UAAU,CAAC,OAAO,EAAE,CAAC,GAAG,IAAI;IAM5B,YAAY,IAAI,CAAC,EAAE;CAG7B"}
