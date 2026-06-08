@@ -1,0 +1,416 @@
+Angular - Angular is a component-based framework used for building scalable, single-page web applications (SPAs). It is written entirely in TypeScript, which brings strong typing and excellent tooling to the frontend.
+
+Install - npm i -g @angular/cli
+
+create Project - ng new project_name
+
+create build - ng serve
+server auto oprn - ng serve -o - ng serve --open
+create new component - ng generate component <component-name>
+  or                - ng g c <component-name>
+
+Ques - jab bhi hum class bnate hai to kya hum var, let or other nhi le sakta kya? and kab le sakta hai
+Ans - The short answer: No, you cannot use var, let, or const directly inside a class body to declare properties. You only use them inside methods (functions).
+
+❌ The Wrong Way (Will throw a syntax error):
+export class AppComponent {
+let title = 'angular-tut'; // ❌ Error!
+const userCount = 10; // ❌ Error!
+var isLoaded = true; // ❌ Error!
+}
+
+The Right Way:
+TypeScript
+export class AppComponent {
+title = 'angular-tut'; // Correct (Public by default)
+userCount = 10; // Correct
+isLoaded = true; // Correct
+
+// If you want a constant value that cannot be changed, use 'readonly':
+readonly apiEndpoint = 'https://api.example.com';
+}
+
+2. Inside a Method (Function): Use let or const
+   You can (and should) use let and const inside the methods of a class. These are called local variables. They only exist while that specific function is running, and they disappear as soon as the function finishes.
+
+TypeScript
+export class AppComponent {
+// 1. Class Property (accessible anywhere in the component and HTML)
+userName = 'Dharmendra';
+
+calculateBonus() {
+// 2. Local variables inside a method (Allowed!)
+const baseSalary = 50000;
+let performanceScore = 4.5;
+
+    let total = baseSalary * performanceScore;
+    console.log(total);
+
+    // You can access class properties here using 'this'
+    console.log('Calculating for: ' + this.userName);
+
+} // 'baseSalary', 'performanceScore', and 'total' die here.
+}
+
+2. Inside a Method (Function): Use let or const
+   You can (and should) use let and const inside the methods of a class. These are called local variables. They only exist while that specific function is running, and they disappear as soon as the function finishes.
+
+TypeScript
+export class AppComponent {
+// 1. Class Property (accessible anywhere in the component and HTML)
+userName = 'Dharmendra';
+
+calculateBonus() {
+// 2. Local variables inside a method (Allowed!)
+const baseSalary = 50000;
+let performanceScore = 4.5;
+
+    let total = baseSalary * performanceScore;
+    console.log(total);
+
+    // You can access class properties here using 'this'
+    console.log('Calculating for: ' + this.userName);
+
+} // 'baseSalary', 'performanceScore', and 'total' die here.
+}
+
+=============================================================
+
+About File and Folder -
+
+package.json - Imp file
+--- dependencies VS devDependencies
+
+1.  Dependencies
+
+Ye woh packages hote hain jo application ko run karne ke liye production me bhi chahiye hote hain.
+Ex - npm install express
+
+
+2. DevDependencies
+
+Ye packages sirf development ke time chahiye hote hain.
+
+Ex - nnpm install --save-dev nodemon
+
+1. The Core Application Directory (src/app/)
+This folder is your workspace. 99% of your coding time will be spent here. This holds the root component of your application.
+
+app.ts (Formerly app.component.ts):
+The logic engine of your main component. This is where you write TypeScript code, handle user interactions, API calls, and manage data variables.
+
+app.html (Formerly app.component.html):
+The presentation layer. This contains the HTML structure of your main page. Whatever you type here is what the user actually sees in the browser.
+
+app.css (Formerly app.component.css):
+The scoped styling sheet. Styles written here will only apply to app.html and will not bleed into or affect any other components you create later.
+
+app.routes.ts:
+The router configuration. When you build multi-page applications (e.g., shifting from /dashboard to /profile), you define those URL paths here.
+
+app.config.ts:
+The configuration hub. Since modern Angular doesn't use app.module.ts, this file initializes global settings, router setups, and third-party plugins.
+
+app.spec.ts:
+The testing sandbox. This file contains automated unit tests for your root component. As a beginner, you can safely ignore this file for now.
+
+
+Configuration Ecosystem:------->
+
+1> angular.json:
+The master blueprint for the Angular CLI. It defines how your app builds, runs local development servers, and paths for external scripts or styles.
+
+2> package.json:
+The heartbeat of your Node ecosystem. It tracks your project's metadata, dependencies (like Angular core libraries), and custom terminal script commands (like npm start).
+
+3> tsconfig.json, tsconfig.app.json, tsconfig.spec.json:
+TypeScript configuration profiles. They tell the compiler how strictly to check your TypeScript code and how to translate it into standard browser-readable JavaScript.
+
+4> .prettierrc & .editorconfig:
+Code formatting utilities. They ensure that if multiple people work on the code, their indentation and formatting rules remain identically styled.
+
+
+The App Gatekeepers (src/) ---> 
+These files sit right outside the app/ folder and control how the whole application starts up.
+
+1> main.ts:
+The ignition switch of the app. It's the absolute first code that executes. It tells the browser to grab app.config.ts and boot up your root component.
+
+2> index.html:
+The single, actual HTML file served to the user. Inside its <body>, you will find <app-root></app-root>. Angular dynamically injects your components right into that tag.
+
+3> styles.css:
+The global stylesheet. Unlike app.css, styles written here apply to your entire application (this is where you'll import Tailwind CSS or Google Fonts later).
+
+
+#Global Assets & Configuration Files ----->
+These files live in your root project directory (angular-tut/) and handle the build tools and compiler rules.
+
+The Assets Hub
+1> public/ folder:
+This folder contains static media files like images, icons, logos, or local JSON files that you want to reference directly via URLs in your application.
+
+
+=======================================================================
+
+## Interpolation in Angular=>
+ Interpolation allows you to embed dynamic string values directly into your HTML. Angular looks at what is inside the {{ }} badges, evaluates it, converts it to a string, and swaps it into the webpage.
+
+ Ex - in app.html we execute js/ts code directly using double curly breses {{}} - {{2+2}} = 4 
+
+
+===============================================================
+
+1. What is Angular CLI?
+Definition: Angular CLI ek powerful command-line tool hai jo Angular applications ko initialize, develop, scaffold (generate), aur maintain karne ke kaam aata hai.
+
+Why use it? Yeh automate karta hai saare manual tasks jaise files banana, build configurations set karna, aur local testing server run karna.
+
+B. Creating a New Project
+Bash
+ng new project-name
+Explanation: Yeh command specified name se ek naya folder banata hai aur Angular ka official folder structure configuration ke sath ready kar deta hai.
+
+C. Running the Local Server
+Bash
+ng serve
+Shortcut Option: ng serve -o ya ng serve --open
+
+Explanation: Yeh aapke project ko compile karta hai aur ek local development server start karta hai (http://localhost:4200). --open lagane se browser automatically khul jata hai.
+
+D. Generating Blueprint Files (Scaffolding)
+Angular me jab bhi nayi files (components, services) banani ho, to manual file banane ke bajaye hamesha ng generate use karein.
+
+Generate a Component:
+
+Bash
+   -- ng generate component component-name
+Shortcut: ng g c component-name
+
+E. Building for Production
+Bash
+ng build
+
+Explanation: Jab aapka project complete ho jata hai, tab yeh command pure TypeScript aur modern code ko highly optimized, minified standard JavaScript/HTML/CSS me convert kar deti hai. Iske baad jo dist/ folder banta hai, use aap directly Vercel, Netlify, ya kisi bhi server par deploy kar sakte hain.
+
+4. Key Cheat Sheet for NotesCommandShort FormPurposeng new—Creates a new workspaceng serve—Runs local dev server at port 4200ng generateng gCreates new files safelyng g c <name>—Generates a new Componentng g s <name>—Generates a new Serviceng build—Compiles app into production-ready files
+
+
+Angular Components
+1. What is a Component?
+Definition: A component is the fundamental building block of an Angular application. It controls a specific patch of the user interface (UI) screen.
+
+Core Philosophy: Every component is an isolated, reusable piece of user interface that combines its own logic, appearance, and styling.
+
+The Main Rule: An Angular application is essentially a tree structure of these components nested inside one another.
+
+2. Anatomy of a Component (The 3 Essential Parts)
+When you create a component, Angular splits its identity across separate files to enforce clean organization:
+
+The Logic (.ts file): A TypeScript class that handles the data state, variable tracking, functions, and API processing.
+
+The Layout (.html file): A standard HTML template that renders structural layout and UI elements to the user.
+
+The Design (.css or .scss file): A stylesheet containing CSS configurations scoped strictly to that specific component.
+
+
+
+===========================================================================
+
+Custome component ==>
+
+
+
+
+
+
+
+
+
+====================================================
+Event Binding (Function Call on Button Click):===>
+
+1. What is Event Binding?
+Definition: Event binding allows you to listen for specific user events (such as clicks, touches, or keystrokes) and execute a corresponding TypeScript function when those events occur.
+
+The Syntax: In React, you use onClick={handler}. In Angular, you wrap the standard HTML event name in round parentheses ( ) and assign it to your component's function inside quotes.
+
+2. Practical Implementation
+Let's build a simple interactive counter component to see exactly how this works.
+
+Step 1: Write the Logic (app.ts)
+Inside your class, create a property to track the state and methods (functions) to mutate that state. Remember: no let, const, or function keywords directly inside the class body!
+
+TypeScript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class AppComponent {
+  // 1. Initial State Property
+  clickCount = 0;
+
+  // 2. Click Handler Function
+  incrementCounter() {
+    this.clickCount++; // Use 'this' to access class properties
+    console.log('Button clicked! Current count is:', this.clickCount);
+  }
+
+  // 3. Another Function with Parameters
+  showCustomAlert(message: string) {
+    alert(message);
+  }
+}
+Step 2: Bind the Event in the Layout (app.html)
+Now use the standard (click) target event to bind those functions to your button tags.
+
+HTML
+<div style="padding: 20px; font-family: sans-serif; text-align: center;">
+  
+  <h2>Angular Event Binding Sandbox</h2>
+  
+  <p>Total Clicks: <strong>{{ clickCount }}</strong></p>
+
+  <button (click)="incrementCounter()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+    Click Me to Increment
+  </button>
+
+  <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
+
+  <button (click)="showCustomAlert('Hello Dharmendra! This is an Angular action message.')" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+    Trigger Alert Popup
+  </button>
+
+</div>
+3. Passing the Native Event Object ($event)
+Sometimes you need specific details about the click itself (like where the mouse clicked on the screen, or what specific element was targeted). Angular provides a special token called $event that you can pass directly into your function parameter.
+
+TypeScript Class modification:
+TypeScript
+logClickCoordinates(event: MouseEvent) {
+  console.log('X Coordinate: ', event.clientX);
+  console.log('Y Coordinate: ', event.clientY);
+}
+HTML Template usage:
+HTML
+<button (click)="logClickCoordinates($event)">
+  Log Click Location coordinates
+</button>
+
+
+
+
+=====================================================
+Data Types in Angular (TypeScript)
+1. Why Do We Need to Define Types?
+Coming from JavaScript, you might be used to variables being able to hold any value at any time. TypeScript changes this by enforcing Static Typing.
+
+Catch Bugs Early: If you accidentally try to perform a text operation on a number (e.g., trying to uppercase a user's phone number), the compiler throws an error before you deploy the code to the browser.
+
+Auto-completion (IntelliSense): When you type a dot (.) after a variable name, your code editor (like VS Code) instantly lists all the available properties and methods belonging to that specific data type.
+
+Code Documentation: Types act as a self-explanatory map for your code. Anyone reading your file instantly knows what data is expected.
+
+2. Defining a Type for a Property
+To define a type for a component property, use a colon (:) followed by the data type name right after the property name.
+
+Common Basic Types:
+string: For text values.
+
+number: For integers and floating-point numbers.
+
+boolean: For true or false flags.
+
+any: Disables type checking (use this sparingly, only when desperate!).
+
+TypeScript
+export class AppComponent {
+  // Syntax: propertyName: type = value;
+  developerName: string = 'Dharmendra';
+  experienceYears: number = 3;
+  isPlacementReady: boolean = true;
+}
+3. Defining Multiple Types for a Property (Union Types)
+Sometimes a variable needs to be flexible. For example, a product ID might come from the database as a pure number (101) or as a string uuid ("prod-101").
+
+You can allow multiple types using the Pipe symbol (|), which represents a Union Type.
+
+TypeScript
+export class AppComponent {
+  // This property can store either a string OR a number
+  productId: string | number = 101; 
+
+  updateProduct() {
+    this.productId = "perfume-09"; // Valid!
+    this.productId = 505;          // Valid!
+    // this.productId = true;      // ❌ Compile Error! (Boolean is not allowed)
+  }
+}
+4. Defining Types for Function Parameters
+Just like component properties, functions need boundaries. By typing your function inputs (parameters) and its output (return type), you ensure nobody passes invalid data into your logic.
+
+TypeScript
+export class AppComponent {
+  
+  // Syntax: functionName(param: type): returnType
+  calculateTax(price: number, taxRate: number): number {
+    return price * taxRate;
+  }
+
+  // Use 'void' if the function performs an action but returns absolutely nothing
+  logMessage(user: string): void {
+    console.log("Activity logged for: " + user);
+  }
+}
+5. Practical Example: Function Call with Typed Parameters on Button Click
+Let’s put all these rules together into a real working scenario. We will create a function that takes a dynamic string parameter and trigger it when a user clicks a button.
+
+The TypeScript Logic (app.ts)
+TypeScript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class AppComponent {
+  // Storing structural profile data
+  currentUser: string = 'Dharmendra Vishvkarma';
+
+  // Strongly typed function parameter
+  handleUserAlert(message: string, count: number): void {
+    alert(`Notification for ${this.currentUser}: ${message} (Alert Count: ${count})`);
+  }
+}
+The HTML Layout Presentation (app.html)
+When you invoke the function inside your template, you must pass the matching data types specified in your TypeScript class (string and number).
+
+HTML
+<div style="padding: 30px; font-family: Arial, sans-serif;">
+  <h2>TypeScript Typing Workshop</h2>
+  <p>Current Active Student: <strong>{{ currentUser }}</strong></p>
+
+  <button 
+    (click)="handleUserAlert('Your profile changes have been compiled successfully!', 1)"
+    style="padding: 12px 24px; background-color: #673ab7; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 15px;">
+    Trigger Account Status Check
+  </button>
+</div>
+If you try to pass a boolean value like true into the second parameter instead of a number, Angular's build tools will instantly stop you and flag an error in your terminal!
+
+Key Cheat Sheet for Notes
+property: string sets a rigid type requirement.
+
+property: string | number creates a flexible union path.
+
+param: type protects function entry gates from corrupt or mismatched inputs.
+
+========================================================================================================
+
+Events ==>
