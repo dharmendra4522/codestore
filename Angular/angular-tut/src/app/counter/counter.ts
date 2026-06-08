@@ -20,6 +20,7 @@ export class Counter {
   reset() {
     this.count=0;
   }
+  
   handleCounter(val:string){
     if(val==='minus'){
       if(this.count>0){

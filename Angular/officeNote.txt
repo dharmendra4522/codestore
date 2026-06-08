@@ -1,0 +1,380 @@
+Angular - Angular is a web framework that empowers
+developers to build fast, reliable applications that users love.
+
+Maintained by a dedicated team at Google, Angular provides a broad suite of tools, APIs, and libraries to simplify and streamline your development workflow. Angular gives you a solid platform on which to build fast, reliable applications that scale with both the size of your team and the size of your codebase. Angular.dev is the official home for Angular documentation.
+
+The Angular CLI==>
+  The Angular CLI is a command-line interface tool which allows you to scaffold, develop, test, deploy, and maintain Angular applications directly from a command shell.
+  Angular CLI is published on npm as the @angular/cli package and includes a binary named ng. Commands invoking ng are using the Angular CLI.
+
+1. What is Angular's Core Purpose?
+  Before Angular, web browsers mostly dealt with static HTML pages. If you clicked a link, the whole page had to reload from a server.
+
+  Angular changes this by shifting the heavy lifting to the user's browser. Its main purpose is to build Single Page Applications (SPAs). When a user interacts with an Angular app, only the specific parts of the page that need to change are dynamically updated. The page never completely blinks or reloads, creating a smooth experience that feels like a desktop or mobile app.
+
+2. Key Architectural Features
+  Angular relies on a structured, opinionated architecture. This means it gives you a specific way to organize your code, which is incredibly helpful for keeping large team projects clean and predictable.
+
+Components: The Building Blocks :=>
+  Everything you see on the screen in an Angular application is a Component. A component controls a patch of the screen and consists of three parts:
+  An HTML template to layout the structure.
+  A CSS/SCSS stylesheet to make it look good.
+  A TypeScript class to handle the logic (e.g., what happens when a user clicks a button).
+
+Data Binding :=>
+ Angular synchronizes data between your TypeScript logic and your HTML view effortlessly.
+
+1. Property Binding: Pushes data from your code smoothly into the HTML view.
+2. Event Binding: Listens for user interactions (like clicks or keystrokes)and alerts your code.
+3. Two-Way Data Binding: Keeps your code data and HTML inputs perfectly synced in real-time (often used in forms).
+
+Dependency Injection (DI) :=>
+  Think of DI as a delivery service for efficiency. If multiple components need to fetch data from a database, you write that data-fetching code once in a reusable file called a Service. Angular then automatically "injects" that service into whatever component requests it, keeping your code incredibly clean and modular.
+
+3. Best Use Cases for Angular :=>
+Because Angular is packed with built-in tools, it is a heavier framework. It isn't usually the right choice for a simple landing page or a personal blog. Instead, it thrives in enterprise-grade scenarios:
+  => Enterprise Web Apps: Large organizations love Angular because its rigid structure ensures that 50 different developers can work on the same codebase without creating a chaotic mess.
+  => E-Commerce & Dashboards: Applications handling massive amounts of real-time data, complex charts, user permissions, and intricate forms benefit immensely from Angular’s robust state management.
+  => Cross-Platform Systems: With tools like Angular, you can build a codebase that easily scales into mobile applications (using technologies like Ionic or NativeScript).
+
+
+Install Angular CLI :=>
+    To inatsll latest version - npm install -g @angular/cli
+    To install a specific older version - npm install -g @angular/cli@15 
+
+Create a new project :=>
+    ng new <project-name>
+
+Running  :=> 
+    ng serve
+    The Shortcut (-o): If you want the server to boot up and automatically open your default web browser for you, add the -o flag: ng serve -o
+
+Generate Components :=>
+    ng generate component user-profile  (or)
+    ng g c user-profile
+
+What happens behind the scenes:  => 
+  The CLI instantly generates a new folder named user-profile inside your app directory containing four crucial files:
+  1. user-profile.component.ts (The logical TypeScript backend of the component)
+  2. user-profile.component.html (The view template)
+  3. user-profile.component.css (The isolated component styling)
+  4. user-profile.component.spec.ts (A starter file for unit testing)
+
+======================================================================================================================
+
+Project Structure  ====>
+
+1> package.json (The Dependency Manager)
+  If you've worked with Node.js, you're already familiar with this. It lists all the third-party JavaScript libraries your project needs to function, broken down into production dependencies (like Angular core packages) and developer utilities (like testing engines). It also defines shorthand commands (like npm start which map to ng serve).
+
+Inside your package.json file, here is what those key sections mean in one line:
+
+ =>scripts: Custom shortcut commands you can run in your terminal (e.g., npm start runs ng serve behind the scenes).
+ =>dependencies: The essential code libraries your application absolutely needs to run smoothly in production for the end user.
+ =>devDependencies: The auxiliary tools, linters, and testing libraries only needed by developers while building the app, which are completely left out of the final production build.
+ =>peerDependencies: A warning list of specific versions of other packages that a library expects your project to already have installed to work correctly.
+
+
+tsconfig.json :=> It is the configuration file for the TypeScript compiler (tsc).
+
+Since web browsers cannot understand TypeScript directly, your code must be compiled (translated) into standard JavaScript. This file provides the exact instructions on how to do that.
+
+Key Sections to Know =>
+compilerOptions: Settings that dictate how your code is translated (e.g., "target": "ES2022" tells it to output modern JavaScript, while strict mode options enforce cleaner, bug-free coding rules).
+
+include: Lists the specific folders or files the compiler should look at and translate (typically your src folder).
+
+exclude: Tells the compiler which folders to completely ignore during the build process to speed things up (like node_modules).
+
+=> tsconfig.app.json :=> It is a specialized, app-specific TypeScript configuration file that inherits from the main master tsconfig.json file.
+
+
+Inside tsconfig.app.json, you will find two key configurations that explain exactly what it does:
+
+1-> extends": "./tsconfig.json": This line tells Angular to copy all the base rules and compiler options you already defined in the main configuration file so you don't have to rewrite them.
+
+2-> "types": []: This overrides global types. It blocks testing types (like Jasmine or Jest) from sneaking into your core app files, ensuring your final bundle stays clean and optimized.
+
+3-> "files": ["src/main.ts"]: It specifies the absolute entry point of your application to kick off the compilation process.
+
+4-> "include": ["src//*.d.ts"]: It defines exactly which application files should be compiled for the browser, while explicitly leaving out *.spec.ts files (your unit tests), which are handled separately by tsconfig.spec.json.
+
+
+tsconfig.spec.json ==> 
+  It ensures your development environment understands testing syntax and builds your test suites without mixing them into your actual production code.
+
+package-lock.json ==>
+  package-lock.json is a record book that locks down the exact dependency tree of your project.
+
+  While package.json says "I need Version 15 or higher of this library", package-lock.json states "This project is currently using Version 15.2.11 down to the exact byte."
+ 
+
+angular.json ==>
+  angular.json is the master configuration control panel for your entire Angular workspace. It tells the Angular CLI exactly how to build, test, and serve your application.
+
+  If package.json manages what code tools you have installed, angular.json manages how those tools behave.
+
+  The Key Sections Inside
+  1. "projects": This is the core container. Because an Angular workspace can technically hold multiple apps or libraries in one folder, each app gets its own named configuration block inside this section.
+  2. "architect" -> "build": This is where the magic happens for production. It dictates:
+     1. "outputPath": The folder where your final, compiled browser files will be dumped when you run ng build.2. 2.  "index" & "main": The entry path locations for your primary HTML shell and main TypeScript bootstrap file.
+     3.  "styles" & "scripts": The most common place you will edit! If you want to use a global CSS framework like Bootstrap or Tailwind, you register its path here so Angular can bundle it.
+  3. "architect" -> "serve": Configures your local development server options (e.g., setting the default port or proxy settings when you run ng serve).
+
+node_modules ==>
+  node_modules is the warehouse folder where npm downloads and stores all the physical code for the external libraries and packages your project depends on.
+
+  When you run npm install, npm looks at your package.json file, downloads those libraries from the internet, and drops them directly into this folder.
+
+public ==> 
+  Depending on which version of Angular you are actively looking at, the role of a public folder or its behavior changes slightly, but its foundational purpose remains the same.
+
+1. The src/ Folder (The Source Container) :==>
+   src/ stands for Source. It separates your actual development code from project configuration blueprints (like package.json or angular.json).
+   If it doesn't belong in the final browser build, it doesn't go in src/.
+
+=>Key files directly under src/:
+ index.html: The single, primary HTML page structure of your application.
+ main.ts: The entry point file that compiles and ignites (bootstraps) your Angular app in the browser.
+ styles.scss / styles.css: The global stylesheet where you write styles meant to apply to your entire website.
+
+2. The src/app/ Folder (The Heart of Code Logic) :=>
+  This is where you will spend 90% of your coding time. Every component, page, service, or route you create goes right here.
+  By default, a fresh project comes with the Root Blueprint files inside it:
+
+ => app.component.ts: The master component logic that holds the data for your main page shell.
+ => app.component.html: The master HTML layout (the root design structure of your app).
+ => app.component.scss / .css: Styles that apply only to the root component layout.
+ => app.module.ts (In Angular 15): The central registry box. It imports your packages and declares your components so Angular knows how your files talk to each other
+
+===========================================================================================================================================================================================
+
+What is a Component :=>
+ A component controls a specific patch of the screen. Architecturally, a single Angular component is made up of a folder containing three main files that handle separate duties:
+
+  1. The Template (.html): Defines the visual layout and structure (what the user sees).
+  2. The Styles (.css or .scss): Defines how the component looks. These styles are encapsulated, meaning CSS written inside a component folder will never accidentally bleed out and ruin styles on the rest of the website.
+  3.The Class (.ts): Written in TypeScript, this holds the data (variables) and the behavior (functions) for that specific piece of the UI.
+
+Anatomy of a Component File (.ts) => 
+  When you open a component's TypeScript file, you will always see a decorator called @Component. This metadata tells Angular, "Hey, don't treat this as a normal JavaScript class; this is an Angular component!"
+
+Example -> 
+import { Component } from '@angular/core';
+  
+@Component({
+  selector: 'app-user-profile',         // The custom HTML tag used to display this component
+  templateUrl: './user-profile.component.html', // Path to the visual HTML file
+  styleUrls: ['./user-profile.component.scss']  // Path to the CSS styling file
+})
+export class UserProfileComponent {
+  username: string = 'Dharmendra';    // Component Data
+
+  changeName() {                       // Component Behavior
+    this.username = 'Vishvkarma';
+  }
+}
+
+
+Creating Components with the CLI :=>
+  Instead of manually creating these files and linking them up, you should always use the Angular CLI generator command in your terminal:
+
+  ng g c components/user-profile
+  (Shortcut for ng generate component)
+
+  This creates a clean sub-folder named user-profile, generates all three core files along with a testing file (.spec.ts), and automatically registers it with your application workspace.
+
+
+Component Lifecycle Basics :=> 
+  An Angular component isn't just static; it has a life cycle managed completely by the framework. It is born, it changes when data flows through it, and it eventually dies when the user navigates away to a different page.
+
+  Angular provides Lifecycle Hooks—special built-in methods you can drop into your TypeScript class to run code at specific moments of a component's life.
+
+
+Phase 1: Creation (Executes First)
+  Before Angular can do anything with HTML or data, it must create the component object in system memory.
+
+   • constructor()
+    • Function: This is a standard JavaScript class feature. It runs the exact microsecond Angular instantiates your component. Its sole job is Dependency Injection (DI)—bringing in the services, HTTP clients, or utilities your component needs to function. No inputs or HTML elements are accessible yet.
+
+
+Phase 2: Change Detection Phase
+  Once the component object exists, Angular initializes data tracking. This phase ensures that the variables in your TypeScript logic match what is printed on the user's screen.
+
+  • ngOnChanges()
+    • Function: Fires whenever an @Input() property passed from a parent component changes. It receives a map of current and previous values.
+  
+   • ngDoCheck()
+    • Function: Runs immediately after every change detection run. It allows you to manually catch and handle custom updates that Angular's automated change detector missed.
+
+   • ngAfterContentInit()
+     • Function: Runs once after external HTML content has been projected/inserted into the component's view using <ng-content>.
+
+   • ngAfterContentChecked()
+     • Function: Runs every time Angular finishes checking the projected content for data updates.
+
+   • ngAfterViewInit()
+     • Function: Runs once after the component’s own visual  HTML template (and its child components) is fully set up. This is the earliest moment you can safely use @ViewChild to manipulate HTML elements directly.
+
+   • ngAfterViewChecked()
+      • Function: Runs every time Angular finishes checking the component’s template files for data updates.
+
+Phase 3: Rendering Phase
+This phase executes immediately after the template layouts are calculated and stabilized. It deals directly with drawing the visual pixels onto the web browser's DOM tree.
+
+  • afterNextRender()
+     • Function: Runs once the very next time all components on the screen have been successfully rendered to the browser DOM. It is completely safe to use browser-only tools like window or document here, as it never executes on a backend server (perfect for Server-Side Rendering setups).
+
+  • afterEveryRender()
+    • Function: Runs every single time the layout engine finishes drawing updates to the browser screen. Ideal for keeping canvas drawings or heavy custom animations manually synchronized.
+
+
+Phase 4: Destruction Phase (Executes Last)
+When a user clicks a link or navigates away to another page, Angular cleans up after itself to prevent memory bloat.
+
+   • ngOnDestroy()
+     Function: Runs once right before Angular completely wipes out the component from the screen. This is your cleaning crew: you use it to cancel active API data streams (RxJS subscriptions), turn off background intervals (clearInterval), and unbind global event listeners so your application doesn't slow down over time.
+
+
+constructor -> ngOnChanges -> ngOnInit -> ngDoCheck -> ngAfterContentInit -> ngAfterViewInit -> afterNextRender$$
+
+======================================================================================================================
+
+Modules ==>
+  An Angular module is a TypeScript class decorated with the @NgModule decorator. This decorator takes a configuration object that acts as a checklist for Angular's compiler.
+
+Inside every @NgModule, you will see four major configuration properties:
+
+   - declarations: This is where you list all the components, directives, and pipes that belong strictly to this specific module box. (Remember: A component can only belong to one module's declarations).
+
+   - imports: This is where you bring in other modules that your components need. For example, if your components use forms, you must import FormsModule here.
+
+   - exports: The public interface of your module. Anything you list here can be used by other modules when they import this one. If a component isn't exported, it remains locked and hidden inside this module.
+
+   - providers: This is where you register Services. Once a service is listed here, Angular's dependency injection system makes it available to be used across the module.
+
+Root Module vs. Feature Modules =>
+   As your software application grows from a simple setup into a massive enterprise application, stuffing everything into a single file becomes unmanageable. Angular solves this by splitting architecture into two distinct types of modules:
+
+  The Root Module (app.module.ts) =>
+   Every Angular application has exactly one root module. By convention, it is named AppModule.
+
+     - Its Role: It acts as the primary launchpad for the entire application.
+
+     - It contains the bootstrap property, which tells Angular which root component (AppComponent) to load first into the browser when the website ignites.
+
+  Feature Modules =>
+    As you build out new functional areas of your application, you should group them into dedicated Feature Modules (e.g., UserModule, AdminModule, AnalyticsModule).
+
+     - Its Role: To isolate a specific business feature or domain of your application.
+     - Instead of cluttering the root module, a feature module keeps all components, styling, and routes for that specific section bundled neatly together.
+
+How to Organize Your App Using Modules =>
+A standard, industry-grade way to organize an Angular 15 project structure looks like this:
+
+src/app/
+│
+├── app.module.ts               <-- The Root Module
+├── app-routing.module.ts       <-- Global Router Configurations
+│
+├── core/                       <-- Core Module (Global singletons: Services, Auth Guards)
+│   └── core.module.ts
+│
+├── shared/                     <-- Shared Module (Reusable elements: Buttons, Spinners, Pipes)
+│   └── shared.module.ts
+│
+└── features/                   <-- Feature Modules Area
+    ├── dashboard/
+    │   ├── dashboard.module.ts <-- Dashboard Feature Module
+    │   ├── dashboard.component.ts
+    │   └── dashboard-routing.module.ts
+    │
+    └── auth/
+        ├── auth.module.ts      <-- Auth Feature Module
+        └── login/
+
+NgModule :=> 
+   The declarations are the internal workers inside the room. The imports are the external raw materials brought in from other departments. The providers are the shared automated machinery tools available for workers to use. Finally, the exports are the finished products loaded onto the conveyor belt to be shipped out to the rest of the factory.
+
+   ========================================================================================================================================================================================
+
+The Power of Feature Modules: Lazy Loading =>
+  The ultimate reason to break your application down into Feature Modules is Lazy Loading.
+  By default, Angular loads the entire application's JavaScript down to the browser at once. If your admin dashboard is massive, a regular user still has to wait for all those heavy admin files to download.
+  By separating the admin portal into a AdminModule, you can configure Angular's router to only download that module file when the user explicitly clicks the /admin link, keeping your initial website loading speed incredibly fast!
+
+===========================================================================================================================================================================================
+
+Standalone :=> 
+  Before standalone components, every component was like a tool that had to be packed inside a toolbox (a Module) before you could use it. If a component wanted to use an external feature like *ngIf or forms, its parent module had to import it.
+
+  A Standalone Component is completely self-contained. It manages its own dependencies directly within its own file metadata, completely bypassing the need for a separate app.module.ts or feature module file. 
+
+command to create standalone component - 
+    ng g c <comp-name> --standalone
+
+  ====================================================================================================================================
+
+
+Data Binding :=>
+  Data binding is the communication bridge between your component's TypeScript logic (the data source) and its HTML template (the view output). Angular provides four distinct styles of binding, categorized by how data flows through your code.
+
+1. Interpolation: Source -> View (One-Way):=> 
+   Interpolation allows you to embed dynamic text directly into your HTML layouts using "double curly braces" (often called mustache syntax).
+
+   Syntax: {{ expression }}
+
+   How it works: Angular evaluates whatever is inside the braces, converts it to a string, and drops it straight into the HTML text.
+
+2. Property Binding is a one-way data binding mechanism in Angular that allows you to pass data from your component's logic (TypeScript) down into an HTML element's property.
+
+It allows you to control HTML elements dynamically based on the state of your application.
+
+The Core Concept & Syntax =>
+  To use property binding, you wrap the HTML element's target property inside square brackets []. This tells Angular to evaluate the right side of the equals sign as a live TypeScript variable or expression, rather than treating it as a plain text string.
+
+    Syntax: [targetProperty]="templateExpression"
+
+
+ => Property Binding vs. Interpolation {{ }} =>
+       Both property binding and interpolation pass data from TypeScript to HTML, but they have distinct use cases:
+
+    Use Interpolation {{ }} when you want to render dynamic text directly between HTML tags.
+
+HTML
+    <p>Welcome back, {{ username }}!</p>
+
+    Use Property Binding [ ] when you want to change an actual underlying setting or property of an HTML element (especially non-string data types like booleans for disabled, hidden, or checked).
+
+HTML
+    <input type="checkbox" [checked]="isAccountActive">
+
+   ⚠️ Common Bug Warning: If you accidentally omit the square brackets, like this: <button disabled="isFormInvalid">, the browser will read "isFormInvalid" as a literal text string. Because any non-empty string evaluates to true in HTML, your button will be permanently disabled!
+
+
+4. Two-Way Binding: Source <-> View (Both Ways):=>
+   Two-way binding seamlessly synchronizes your data in both directions simultaneously. If the user types into a form input box, your TypeScript variable updates instantly. If you change that variable in your code background, the text inside the input box changes automatically to match it.
+  
+  Syntax: [(ngModel)]="variableName"
+  
+  How it works: It combines property binding brackets [] and event binding parentheses () together. This syntax is fondly referred to as the "Banana in a Box" configuration.
+  
+  Important Setup Step: => Because [(ngModel)] belongs to Angular's form-handling module, it will throw a template error unless you explicitly import the FormsModule inside your component's module or its standalone imports list.
+
+TypeScript
+// TypeScript Component Logic
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-search',
+  templateUrl: './search.component.html'
+})
+export class SearchComponent {
+  searchQuery: string = 'Initial search term...';
+}
+
+<input [(ngModel)]="searchQuery" />
+
+<p>You are searching for: <strong>{{ searchQuery }}</strong></p>
+
+

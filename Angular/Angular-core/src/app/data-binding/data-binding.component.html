@@ -1,0 +1,44 @@
+<h1>data-binding works!</h1>
+<p>One Way Data Binding</p>
+{{courseName}}
+<br>
+{{rollNo}}
+<br>
+{{isIndian}}
+<br>
+{{currentDate}}
+<br>
+<br>
+<input type="text" value="{{courseName}}" placeholder="enter text"/>
+<br>
+<br>
+<input type="{{inputType}}"/>
+
+<h1>Propert Binding</h1>
+<div [style]="myClassName">This is a div with dynamic class binding.</div>
+
+<div [class]="myclassName2">Another way to change style using class binding</div>
+<br>
+<input type="text" [value]="courseName">
+<br>
+<input [type]="inputType"/>
+
+<h1>Event Binding: it means handling user interactions</h1>
+<button (click)="showAlert('Welcome to Angular!')">show welcome</button>
+<br>
+<span (click)="showMessage()">Click me!</span>
+
+
+<h1>Two Way Data Binding</h1>
+<button (click)="changeCourseName()">Change Course Name</button>
+<p>Course Name: {{courseName}}</p>
+<div>
+    <input type="text" [(ngModel)]="courseName" placeholder="Enter course name"/> - {{courseName}}
+</div>
+<select [(ngModel)]="stateName">
+    <option value="">Select State</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Rajasthan">Rajasthan</option>
+</select>
+<p>Selected State: {{stateName}}</p>
