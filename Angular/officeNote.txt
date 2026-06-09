@@ -313,7 +313,7 @@ Standalone :=>
 command to create standalone component - 
     ng g c <comp-name> --standalone
 
-  ====================================================================================================================================
+==============================================================================================================================================================================================
 
 
 Data Binding :=>
@@ -378,3 +378,27 @@ export class SearchComponent {
 <p>You are searching for: <strong>{{ searchQuery }}</strong></p>
 
 
+========================================================================================================================================
+
+Directives :=>
+  At its core, a Directive in Angular is a marker on a DOM element (like an HTML tag, attribute, or class) that tells Angular to attach a specified behavior to that element or even completely transform its layout structure.
+
+  If components are the building blocks of your user interface, directives are the tools you use to manipulate those blocks dynamically. In fact, you have already been using directives without even realizing it! In Angular, a Component is actually just a specialized directive that has an HTML template file attached to it.
+
+The Three Main Types of Directives :=>
+  Angular splits directives into three distinct categories based on how they alter your web page:
+
+  Let's look at what each type does in a single line:
+
+  1. Components: Directives with a dedicated visual template (HTML/CSS). They create new UI blocks.
+
+  2. Structural Directives (*ngIf, *ngFor): They change the physical DOM layout by adding or removing HTML elements completely. They always start with an asterisk (*).
+    - if-else element
+    - for loop
+    - Add styles
+    - *ngIf, *ngFor
+
+  3. Attribute Directives (ngClass, ngStyle): They change the appearance or behavior of an element that is already on the screen (like changing its color, size, or CSS classes dynamically).
+  -ngStyle, ngSitch, ngClass
+
+   

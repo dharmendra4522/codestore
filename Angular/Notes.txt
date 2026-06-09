@@ -414,3 +414,5 @@ param: type protects function entry gates from corrupt or mismatched inputs.
 ========================================================================================================
 
 Events ==>
+  Angular supports defining event listeners on an element in your template by specifying the event name inside parentheses along with a statement that runs every time the event occurs.
+
