@@ -1,1 +1,82 @@
-<p>directives works!</p>
+<h1 *ngIf="isLogin()">Welcome User lets lern Directives</h1>
+<!-- <div>
+    <h2>*ngFor Structural Directives</h2>
+    <ul>
+        <li *ngFor="let user of users()">
+            {{ user.name }} - {{ user.email }}
+        </li>
+    </ul>
+</div>
+<p [ngStyle]="{ 'color': pColor }">Hello User</p> -->
+
+
+<h2>*ngFor Structural Directives</h2>
+<div *ngFor=" let prod of products; trackBy: trackByProductId let Outeridx = index">
+    <p>{{ prod.id }} - {{ prod.name }}</p>
+</div>
+<!-- ======================================================== -->
+<h2>Nested Looping usnig *ngFor</h2>
+<h2>Using trackBy</h2>
+<h4>Software Engineer Roadmap</h4>
+<div *ngFor='let selection of develomentRoadMap; let outeridx = index'>
+    <h5>{{outeridx + 1}}. {{selection.categoryName}}</h5>
+    <ul>
+        <li *ngFor='let topic of selection.topics; let innerIdx = index'>
+            Core Modules: {{outeridx + 1}}.{{innerIdx + 1}} - <strong> {{topic}}</strong>
+        </li>`
+    </ul>
+</div>
+
+<ul>
+    <li *ngFor="let student of studentData">
+        {{ student.name }} - {{ student.email }} - {{ student.age }}
+    </li>
+</ul>
+
+<!-- ================================================ -->
+<h2>*ngIf Directives</h2>
+
+<div *ngIf="login; else elseBlock">
+    <a href="/" (click)="toggleLogin()">Logout</a>
+</div>
+<ng-template #elseBlock>
+    <a href="/" (click)="toggleLogin()">Login</a>
+</ng-template>
+
+<h2>Multiple if-else condition using *ngIf</h2>
+<div *ngIf="block ===0">
+    <p>Block 0</p>
+</div>
+<div *ngIf="block ===1">
+    <p>Block 1</p>
+</div>
+<div *ngIf="block ===2">
+    <p>Block 2</p>
+</div>
+<button (click)="updateBlock()">Update blocks</button>
+
+
+<!-- ================================================ -->
+<h2>*ngSwitch Directives</h2>
+
+<button (click)="changeColor('red')">Red</button>
+<button (click)="changeColor('green')">Green</button>
+<button (click)="changeColor('blue')">Blue</button>
+<button (click)="changeColor('yellow')">Yellow</button>
+<button (click)="changeColor('pink')">Pink</button>
+
+<div [ngSwitch]="color">
+    <h3 *ngSwitchCase="'red'" style="background-color: red;">Red Color</h3>
+    <h3 *ngSwitchCase="'green'" style="background-color: green;">Green Color</h3>
+    <h3 *ngSwitchCase="'blue'" style="background-color: blue;">Blue Color</h3>
+    <h3 *ngSwitchCase="'yellow'" style="background-color: yellow;">Yellow Color</h3>
+    <h3 *ngSwitchCase="'pink'" style="background-color: pink;">Pink Color</h3>
+    <h3 *ngSwitchDefault>No Color Selected</h3>
+</div>
+
+<!-- ====================================== -->
+ <h1>ngClass and ngStyle</h1>
+<div class="myDiv"[class.text]="true">ngClass</div> // for single class
+<div class="myDiv" [style.margin]="style">ngStyle</div> // for single class and style
+<div class="myDiv" [ngClass]="multiClass">Iinclude mutile class usnig ngClass</div> // for multiple class
+<div class="myDiv" [ngStyle]="manyStyle">ngStyle for multiple style</div> // for multiple class and style

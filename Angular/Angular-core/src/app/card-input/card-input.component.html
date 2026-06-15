@@ -1,0 +1,8 @@
+<h1>Card Dashboard</h1>
+<app-user-card-input [name]="'Dharmendra Vishvkarm'" [isOnline]="true"></app-user-card-input>
+
+<app-user-card-input [name]="'John Doe'" [role]="'Designer'" [isOnline]="false"></app-user-card-input>
+
+<!-- change name -->
+<app-user-card-input [name]="'Jane Smith'" [role]="'Manager'" [isOnline]="true"
+    (usernameChange)="onNameChange($event)"></app-user-card-input>

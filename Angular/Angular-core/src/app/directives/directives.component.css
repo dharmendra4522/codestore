@@ -1,0 +1,25 @@
+.myDiv{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    border: 2px solid green;
+}
+.text{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 200px;
+}
+
+.class1{
+    background-color: green;
+    color: white;
+}
+.class2{
+    background-color: blue;
+        color: black;
+}
+.class3{
+    background-color: yellow;
+    color: red;
+}

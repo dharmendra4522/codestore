@@ -1,0 +1,16 @@
+<div>
+    <div class="header">
+        <h1>My Todo List</h1>
+    </div>
+
+    <div class="input-container">
+        <input type="text" placeholder="Add a new task" class="form input-field" [(ngModel)]="newTaskTitle">
+        <select class="form select-field" [(ngModel)]="newTaskStatus" *ngIf="!isEditing">
+            <option [value]="StatusEnum.pending">Pending</option>
+            <option [value]="StatusEnum.complete">Complete</option>
+        </select>
+        <button class="btn btn-add" (click)="handleTaskAction()">{{ isEditing ? 'Update' : 'Add' }} Task</button>
+    </div>
+    <app-chield [items]="todoList" (deleteRequest)="deleteTodo($event)" (completeRequest)="completeTodo($event)"
+        (updateTitleRequest)="prepareEdit($event.id, $event.title)"></app-chield>
+</div>

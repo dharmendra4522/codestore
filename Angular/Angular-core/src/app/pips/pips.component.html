@@ -1,0 +1,31 @@
+<h1>Builtin Pips</h1>
+<h2>{{title() | uppercase}}</h2>
+<h2>{{title() | titlecase}}</h2>
+<hr>
+<h2>{{name() | titlecase}}</h2>
+<input #nameInput type="text" (input)="name.set(nameInput.value)" placeholder="Enter your name">
+<hr>
+<h3>I bought a {{mobile | titlecase}} mobile on {{date}} in INR {{amount}}</h3>
+<hr>
+<p>Today is {{today | date}}</p>
+<p>Today is {{today | date: 'mm'}}</p>
+<p>Today is {{today | date: 'yyyy'}}</p>
+<p>Today is {{today | date: 'dd'}}</p>
+<p>Today is {{today | date: 'short'}}</p>
+<p>Today is {{today | date: 'full'}}</p>
+
+<hr>
+<h2>{{user().name | titlecase}}</h2>
+<h2>{{user() | json}}</h2>
+<hr>
+<hr>
+
+<h1>Custom Pips</h1>
+<h2>{{custom() | trimText  | titlecase}}</h2>
+<h2>{{"My name is Dharm" | trimText:7}}</h2>
+
+<hr>
+<h1>Currency Convertor Custome Pips</h1>
+<h3>{{customAmount() | currencyConvertor | currency:'INR'}}</h3>   
+<h3>{{customAmount() | currencyConvertor:30 | currency:'INR'}}</h3>   
+<h3>{{customAmount() | currencyConvertor:120 | currency:'INR'}}</h3>   

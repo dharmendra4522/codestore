@@ -14,7 +14,10 @@ export class UserComponent {
     console.log("ngOnInit");
   }
   ngOnDestroy(){
-    console.log("Distroy");
+    console.log("ngOnDestroy");
   }
   
+  onUserBtnClick(data: any){
+    console.log("User button clicked!", data);
+  }
 }

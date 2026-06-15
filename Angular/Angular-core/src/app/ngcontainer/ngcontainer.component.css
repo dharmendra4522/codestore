@@ -1,0 +1,9 @@
+.pDiv{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: lightblue;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}

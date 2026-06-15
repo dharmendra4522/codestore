@@ -1,0 +1,37 @@
+<div [ngClass]="pDiv">
+    <h1>ng-container</h1>
+</div>
+
+<div>
+    <ng-container *ngIf="isConditionTrue">
+        <p>This is ng-container component. It is used to group elements without adding extra nodes to the DOM.</p>
+        <p>It is a structural directive that can be used to conditionally render elements based on a condition.</p>
+    </ng-container>
+</div>
+
+<div>
+    <h2>User List</h2>
+    <ng-container *ngIf="isApi">
+        <p>Loading...</p>
+
+    </ng-container>
+    <table>
+        <tr>
+            <th>Seq No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        <ng-container *ngIf="!isApi">
+            <tr *ngFor="let user of userList; let srNo = index">
+                <td>{{srNo + 1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+            </tr>
+        </ng-container>
+    </table>
+
+    <button (click)="getUser()">
+        Load User
+    </button>

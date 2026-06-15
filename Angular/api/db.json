@@ -1,0 +1,30 @@
+{
+  "todos": [
+    {
+      "id": "xElr6x-_Hmg",
+      "title": "Learn Angular",
+      "status": "pending"
+    },
+    {
+      "id": "HCC4dAcm8kU",
+      "title": "HttpClientModel",
+      "status": "pending"
+    },
+    {
+      "id": "dM3aRPYETmQ",
+      "title": "Learn Html",
+      "status": "complete"
+    },
+    {
+      "id": "HHpUa2MPrTw",
+      "title": "              Reactjs",
+      "status": "complete"
+    },
+    {
+      "id": "SbxWTi9FFHg",
+      "title": "    hey",
+      "status": "pending"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

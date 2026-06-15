@@ -1,0 +1,13 @@
+<!-- src/app/custom-pips/custom-pips.html -->
+<div style="padding: 30px; font-family: sans-serif;">
+    <h2>Coding Drive - Top Rankings</h2>
+
+    <ul>
+        <!-- Built-in loop, no imports needed -->
+        @for (rank of rankingList; track rank) {
+            <li>
+                Your Position: <strong>{{ rank | ordinalNumber }}</strong>
+            </li>
+        }
+    </ul>
+</div>

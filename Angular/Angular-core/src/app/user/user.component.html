@@ -1,2 +1,9 @@
-<h2>user Component!</h2>
-<p>{{name}}</p>
+<!-- <h2>user Component!</h2>
+<p>{{name}}</p> -->
+<app-alert [message]="'Hello from user component!'" [alertType]="'Warning'"></app-alert>
+<app-alert [message]="'Hello from user component!'" [alertType]="'Error'"></app-alert>
+
+<hr>
+<hr>
+
+<app-my-button [btnText]="'Click User'" [btnClass]="'userBtn'" (onBtnClick)="onUserBtnClick($event)"></app-my-button>

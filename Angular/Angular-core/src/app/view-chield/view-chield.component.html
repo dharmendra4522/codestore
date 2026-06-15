@@ -1,0 +1,27 @@
+<div>
+    <h2>ViewChield</h2>
+    <p>
+        view-chield component is a child component of view-parent component. It is used to display the data passed from the parent component. It also has a button to emit an event to the parent component.
+    </p>
+</div>
+
+<div>
+    <input value="Hello" type="text" #txt>
+    <br>
+    <br>
+    <button (click)="txt.value = 'Hello from ViewChield component!'">Change Input Value</button>
+</div>
+<app-alert [message]="'this is ViewChield component'" [alertType]="'Success'" ></app-alert>
+
+<!-- ====================================== -->
+
+<div>
+    <h1>Parent Dashboard</h1>
+     
+    <!-- # template reference variable -->
+    <app-timer #timerComponent></app-timer>
+    <button (click)="triggerChildTimer()">Start child timer from parent</button>
+    <button (click)="stopChildTimer()">Stop child timer from parent</button>
+    <button (click)="resetChildTimer()">Reset child timer from parent</button>
+
+</div>

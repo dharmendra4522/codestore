@@ -6,10 +6,13 @@ import { ProfileComponent } from './profile/profile';
 import { Datatype } from './datatype/datatype';
 import { Counter } from './counter/counter';
 import { Events } from './events/events';
+import { CustomDirective } from './custom-directive/custom-directive';
+import { CustomPips } from './custom-pips/custom-pips';
+import { GetSet } from './get-set/get-set';
 
 @Component({
   selector: 'app-root',
-  imports: [Login, Signup, ProfileComponent, Datatype, Counter, Events],
+  imports: [Login, Signup, ProfileComponent, Datatype, Counter, Events, CustomDirective, CustomPips, GetSet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

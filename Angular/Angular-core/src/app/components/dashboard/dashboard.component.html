@@ -1,0 +1,17 @@
+<div style="padding: 30px; font-family: sans-serif;">
+  <h2>Premium Perfume Lounge Dashboard</h2>
+  
+  <p *ngIf="selectedProductId" style="background: #ecfdf5; color: #065f46; padding: 10px; border-radius: 4px; display: inline-block;">
+    Success! Added Product ID <strong>{{ selectedProductId }}</strong> to your checkout cart.
+  </p>
+
+  <div style="display: flex; gap: 20px; margin-top: 20px;">
+    
+    <app-product-card 
+      *ngFor="let item of productList"
+      [productData]="item" 
+      (addToCart)="handleCartAddition($any($event))">
+    </app-product-card>
+
+  </div>
+</div>

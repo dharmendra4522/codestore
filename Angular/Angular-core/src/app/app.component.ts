@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular-core';
+
+  onHomeBtnClick(data: any){
+    console.log("Home button clicked!", data);
+  }
+
 }

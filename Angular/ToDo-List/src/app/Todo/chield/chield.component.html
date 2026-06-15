@@ -1,0 +1,29 @@
+<table class="table" *ngIf="items && items.length > 0">
+    <tr class="table-header">
+        <th>ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Actions</th>
+        <th>Update Status</th>
+        <th>Update Title</th>
+    </tr>
+    <tr *ngFor="let todo of items, let i = index" class="table-row" >
+        <td>{{i + 1}}</td>
+        <td>{{todo.title}}</td>
+        <td>{{todo.status}}</td>
+        <td style="display: flex; gap: 10px;">
+            <button class="btn" (click)="onDelete(todo.id)">Delete</button>
+
+        </td>
+        <td>
+            <button class="btn" (click)="onComplete(todo.id)" *ngIf="todo.status === 'pending'">Mark as
+                Complete</button>
+        </td>
+        <td>
+            <button class="btn" (click)="onUpdateTitle(todo.id, todo.title)">Edit</button>
+        </td>
+    </tr>
+    <div *ngIf="items.length === 0" class="no-tasks">
+        <p>No tasks available. Please add a task.</p>
+    </div>
+</table>
